@@ -12,10 +12,10 @@ export async function storeExpense(expenseData) {
     return id;
 }
 
-export async function fetchExpenses() {
+export async function fetchExpenses(token) {
     
     const response = await axios.get(
-        BACKEND_URL + '/expenses.json'
+        BACKEND_URL + '/expenses.json?auth=' + token
     );
 
     const expenses = [];

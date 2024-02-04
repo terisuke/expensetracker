@@ -7,6 +7,7 @@ import { ExpensesContext } from '../store/expenses-context';
 import ExpenseForm from '../components/ManageExpense/ExpenseForm'
 import LoadingOverlay from '../components/UI/LoadingOverlay';
 import ErrorOverlay from '../components/UI/ErrorOverlay';
+import { AuthContext } from '../store/auth-context';
 
 import { storeExpense, updateExpense, deleteExpense } from '../utils/http';
 
@@ -16,6 +17,7 @@ function ManageExpense({ route, navigation }) {
     const [error, setError] = useState();
 
     const expensesCtx = useContext(ExpensesContext);
+    const authCtx = useContext(AuthContext);
     const editedExpenseId = route.params?.expenseId;
     const isEditing = !!editedExpenseId;
 

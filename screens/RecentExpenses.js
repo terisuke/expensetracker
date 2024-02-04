@@ -5,19 +5,21 @@ import { getDateMinusDays } from '../utils/date';
 import { fetchExpenses } from '../utils/http';
 import LoadingOverlay from '../components/UI/LoadingOverlay';
 import ErrorOverlay from '../components/UI/ErrorOverlay';
+import { AuthContext } from '../store/auth-context';
 
 function RecentExpenses() {
     const [isFetching, setIsFetching] = useState(true);
     const [error, setError] = useState();
 
     const expensesCtx = useContext(ExpensesContext);
+    authCtx = useContext(AuthContext);
     // const[fetchedExpenses, setFetchedExpenses] = useState([]);
 
     useEffect(() => {
         async function getExpenses() {
             setIsFetching(true);
             try {
-                const expenses = await fetchExpenses();
+                const expenses = await fetchExpenses(authCtx.token);
                 // setFetchedExpenses(expenses);
                 expensesCtx.setExpenses(expenses);
             } catch (error) {
@@ -27,7 +29,7 @@ function RecentExpenses() {
             
         }
         getExpenses();
-    }, []);
+    }, [authCtx.token]);
 
     if (error && !isFetching) {
         return <ErrorOverlay message={error}/>;
