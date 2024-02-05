@@ -1,58 +1,37 @@
-# Name
-Expense Tracker
-*家族で共有できるかっこいい家計簿アプリ*
+# Expense Tracker
 
-# DEMO
+## DEMO
 
-"hoge"の魅力が直感的に伝えわるデモ動画や図解を載せる
+- <https://drive.google.com/file/d/12GeMZraacsmYMHxw3WahTNJy8drGQy3q/view?usp=drive_link>
 
-# Features
+## 紹介と使い方
 
-"hoge"のセールスポイントや差別化などを説明する
+- FirebaseとReactNativeを使い、家計簿アプリを作成した。
 
-# Requirement
+- FireBaseを使い、支出の登録、削除、編集ができる。
 
-"hoge"を動かすのに必要なライブラリなどを列挙する
+## 工夫した点
 
-* huga 3.5.2
-* hogehuga 1.0.2
+- ログイン・サインアップ・ログアウト機能を実装して、アドレスとパスワードを知る家族と共有できるようにした。
 
-# Installation
+- リロードしてもログイン状態を保持するために、`useEffect`を使い、`onAuthStateChanged`を使って、ログイン状態を保持するようにした。
 
-Requirementで列挙したライブラリなどのインストール方法を説明する
+- リロードすると、日付順に並び替えるようにした。
 
-```bash
-pip install huga_package
-```
+- ログインしていない場合、ログイン画面にリダイレクトするようにした。
 
-# Usage
+- 直近の支出をソートして、表示するようにした。
 
-DEMOの実行方法など、"hoge"の基本的な使い方を説明する
+## 苦戦した点
 
-```bash
-git clone https://github.com/hoge/~
-cd examples
-python demo.py
-```
+- ログイン・サインアップ・ログアウト機能を実装するとナビゲーションが複雑になり、WelcomeScreenから家計簿画面に遷移するfunctionを作るのが難しかった。
 
-# Note
+## 参考にした web サイトなど
 
-注意点などがあれば書く
+- <https://www.udemy.com/course/react-native-the-practical-guide/>
 
-# Author
+- <https://docs.expo.dev/guides/overview/>
 
-作成情報を列挙する
+- <https://firebase.google.com/>
 
-* 作成者
-* 所属
-* E-mail
-
-# License
-
-ライセンスを明示する
-
-"hoge" is under [MIT license](https://en.wikipedia.org/wiki/MIT_License).
-
-社内向けなら社外秘であることを明示してる
-
-"hoge" is Confidential.
+- <https://ja.react.dev/>
