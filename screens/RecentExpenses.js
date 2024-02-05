@@ -20,6 +20,7 @@ function RecentExpenses() {
             setIsFetching(true);
             try {
                 const expenses = await fetchExpenses(authCtx.token);
+                expenses.sort((a, b) => new Date(a.date) - new Date(b.date));
                 // setFetchedExpenses(expenses);
                 expensesCtx.setExpenses(expenses);
             } catch (error) {

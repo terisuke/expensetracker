@@ -34,7 +34,7 @@ function ManageExpense({ route, navigation }) {
     async function deleteExpenseHandler() {
         setIsSubmitting(true);
         try {
-            await deleteExpense(editedExpenseId);
+            await deleteExpense(editedExpenseId, authCtx.token);
             expensesCtx.deleteExpense(editedExpenseId);
             navigation.goBack();
         }
@@ -50,14 +50,17 @@ function ManageExpense({ route, navigation }) {
         setIsSubmitting(true);
         try {
             if (isEditing) {
-                expensesCtx.updateExpense(editedExpenseId, expenseData);
-                await updateExpense(editedExpenseId, expenseData);
+                expensesCtx.updateExpense(editedExpenseId, expenseData, authCtx.token);
+                await updateExpense(editedExpenseId, expenseData, authCtx.token);
             } else {
-                const id = await storeExpense(expenseData);
+                const id = await storeExpense(expenseData, authCtx.token);
                 expensesCtx.addExpense({ ...expenseData, id: id });
             }
             navigation.goBack();
         } catch (error) {
+            console.log(error.response.data); // エラーレスポンスの詳細をログに出力
+            console.log(error.response.status); // HTTPステータスコードをログに出力
+            console.log(error.response.headers); // レスポンスヘッダーをログに出力
             setError('データの保存に失敗しました。');
             setIsSubmitting(false);
         }
